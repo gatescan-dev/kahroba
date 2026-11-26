@@ -1,0 +1,48 @@
+{
+  "name": "kahroba",
+  "productName": "Kahroba",
+  "version": "1.1.0",
+  "description": "Open-source RTL-to-GDSII studio for Windows (WSL2 backend)",
+  "main": "main.js",
+  "license": "Apache-2.0",
+  "author": "Kahroba contributors",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "dependencies": {
+    "monaco-editor": "0.52.2",
+    "netlistsvg": "1.0.2"
+  },
+  "devDependencies": {
+    "electron": "33.4.11",
+    "electron-builder": "25.1.8"
+  },
+  "build": {
+    "appId": "org.kahroba.studio",
+    "productName": "Kahroba",
+    "artifactName": "Kahroba-Setup-${version}.${ext}",
+    "files": [
+      "main.js",
+      "preload.js",
+      "package.json",
+      "renderer/**",
+      "!node_modules/monaco-editor/{esm,dev}/**",
+      "!node_modules/monaco-editor/min-maps/**"
+    ],
+    "extraResources": [
+      { "from": "../server", "to": "server", "filter": ["**/*", "!**/__pycache__/**"] },
+      { "from": "../examples", "to": "examples" },
+      { "from": "../provision", "to": "provision" },
+      { "from": "vendor", "to": "vendor" }
+    ],
+    "win": { "target": "nsis", "icon": "renderer/icon.ico" },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "shortcutName": "Kahroba"
+    }
+  }
+}

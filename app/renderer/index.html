@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://127.0.0.1:8770; script-src 'self' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: http://127.0.0.1:8770; frame-src http://127.0.0.1:8770; worker-src blob: 'self'; font-src 'self' data:; connect-src 'self' http://127.0.0.1:8770">
+  <title>Kahroba</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <header id="titlebar">
+    <div class="brand"><span class="gem"></span><b>Kahroba</b><span class="ver">1.1</span></div>
+    <button id="projBtn" class="proj-btn" title="Switch project"><span id="projName">No project</span><i class="chev"></i></button>
+    <div class="tb-actions">
+      <button class="tb-run" data-act="sim" title="Run simulation (F6)"><i class="ic ic-wave"></i>Simulate</button>
+      <button class="tb-run" data-act="synth" title="Run synthesis (F7)"><i class="ic ic-chip"></i>Synthesize</button>
+      <button class="tb-run primary" data-act="impl" title="Run RTL-to-GDS (F8)"><i class="ic ic-play"></i>Run to GDS</button>
+    </div>
+    <div id="tbStatus" class="tb-status"></div>
+  </header>
+
+  <div id="main">
+    <nav id="activity">
+      <button data-side="explorer" class="active" title="Project"><i class="ic ic-files"></i></button>
+      <button data-side="pdks" title="Technologies (PDKs)"><i class="ic ic-layers"></i></button>
+      <button data-side="runs" title="Run history"><i class="ic ic-history"></i></button>
+      <div class="grow"></div>
+      <button data-side="tools" title="Toolchain"><i class="ic ic-gear"></i></button>
+    </nav>
+
+    <aside id="side">
+      <section id="sideTop" class="pane">
+        <div class="pane-head"><span id="sideTitle">PROJECT</span><div class="pane-tools" id="sideTools"></div></div>
+        <div class="pane-body" id="sideBody"></div>
+      </section>
+      <div class="split-h" data-split="side"></div>
+      <section id="flow" class="pane">
+        <div class="pane-head"><span>FLOW NAVIGATOR</span></div>
+        <div class="pane-body" id="flowBody"></div>
+      </section>
+    </aside>
+    <div class="split-v" data-split="sidew"></div>
+
+    <section id="center">
+      <div id="tabs"></div>
+      <div id="views">
+        <div id="editorHost" class="view"></div>
+      </div>
+      <div class="split-h" data-split="bottom"></div>
+      <section id="bottom">
+        <div class="bt-tabs">
+          <button data-bt="console" class="active">Console</button>
+          <button data-bt="problems">Problems <span id="probCount" class="pill hide">0</span></button>
+          <button data-bt="jobs">Jobs</button>
+          <div class="grow"></div>
+          <button id="btClear" class="ghost" title="Clear console">Clear</button>
+        </div>
+        <div id="btConsole" class="bt-view console"></div>
+        <div id="btProblems" class="bt-view hide"></div>
+        <div id="btJobs" class="bt-view hide"></div>
+      </section>
+    </section>
+  </div>
+
+  <footer id="statusbar">
+    <span id="sbBackend" class="sb-item"><i class="dot"></i>connecting…</span>
+    <span id="sbPdk" class="sb-item"></span>
+    <span id="sbTop" class="sb-item"></span>
+    <div class="grow"></div>
+    <span id="sbCursor" class="sb-item"></span>
+    <span id="sbLang" class="sb-item"></span>
+  </footer>
+</div>
+
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+<script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

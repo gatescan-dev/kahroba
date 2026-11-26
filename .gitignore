@@ -1,0 +1,11 @@
+app/node_modules/
+app/dist/
+app/vendor/
+__pycache__/
+*.pyc
+.venv/
+runs/
+sim_build/
+*.fst
+*.vcd
+*.ghw

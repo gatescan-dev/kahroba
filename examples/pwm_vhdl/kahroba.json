@@ -1,0 +1,9 @@
+{
+  "about": "8-bit PWM (VHDL-2008) - GHDL simulation and GHDL-Yosys synthesis",
+  "top": "pwm",
+  "sources": ["src/pwm.vhd"],
+  "clock": {"port": "clk", "period_ns": 10.0},
+  "reset": {"port": "rst", "active_low": false},
+  "target": {"pdk": "sky130A", "scl": "sky130_fd_sc_hd"},
+  "sim": {"simulator": "ghdl", "test_module": "test_pwm", "waves": true}
+}
